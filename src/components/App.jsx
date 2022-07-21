@@ -5,7 +5,7 @@ export const App = () => {
   return (
     <div>
       <Routes>
-        <Route exact path="login" element={<RegisterForm />}></Route>
+        <Route exact path="register" element={<RegisterForm />}></Route>
       </Routes>
     </div>
   );

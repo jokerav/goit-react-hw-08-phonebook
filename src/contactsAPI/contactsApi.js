@@ -6,8 +6,8 @@ export const contactsApi = createApi({
   }),
   tagTypes: ['contacts'],
   endpoints: builder => ({
-    signUpUser: builder.query({
-      querry: user => ({
+    signUpUser: builder.mutation({
+      query: user => ({
         url: '/users/signup',
         method: 'POST',
         body: { name: user.name, email: user.email, password: user.password },

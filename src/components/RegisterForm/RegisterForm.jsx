@@ -1,34 +1,85 @@
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import { Button, Form, Input } from 'antd';
+import { useSignUpUserMutation } from '../../contactsAPI/contactsApi';
 
-function RegisterForm() {
+import React from 'react';
+
+const RegisterForm = () => {
+  const [signUpUser, { isError, isLoading, isSuccess }] =
+    useSignUpUserMutation();
+  const onFinish = values => {
+    console.log('Success:', values);
+    signUpUser(values);
+  };
+
+  const onFinishFailed = errorInfo => {
+    console.log('Failed:', errorInfo);
+  };
+
   return (
-    <Form>
-      <Form.Group className="mb-3" controlId="formBasicName">
-        <Form.Label>Name</Form.Label>
-        <Form.Control type="text" placeholder="Enter name" />
-        <Form.Text className="text-muted">Please, enter your name</Form.Text>
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" />
-        <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
-        </Form.Text>
-      </Form.Group>
+    <Form
+      name="basic"
+      labelCol={{
+        span: 8,
+      }}
+      wrapperCol={{
+        span: 16,
+      }}
+      initialValues={{
+        remember: true,
+      }}
+      onFinish={onFinish}
+      onFinishFailed={onFinishFailed}
+      autoComplete="off"
+    >
+      <Form.Item
+        label="name"
+        name="name"
+        rules={[
+          {
+            required: true,
+            message: 'Please input your username!',
+          },
+        ]}
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item
+        label="email"
+        name="email"
+        rules={[
+          {
+            required: true,
+            message: 'Please input your username!',
+          },
+        ]}
+      >
+        <Input />
+      </Form.Item>
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group>
-      <Button variant="primary" type="submit">
-        Register
-      </Button>
+      <Form.Item
+        label="Password"
+        name="password"
+        rules={[
+          {
+            required: true,
+            message: 'Please input your password!',
+          },
+        ]}
+      >
+        <Input.Password />
+      </Form.Item>
+
+      <Form.Item
+        wrapperCol={{
+          offset: 8,
+          span: 16,
+        }}
+      >
+        <Button type="primary" htmlType="submit">
+          Submit
+        </Button>
+      </Form.Item>
     </Form>
   );
-}
-
+};
 export default RegisterForm;
