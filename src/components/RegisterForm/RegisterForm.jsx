@@ -4,8 +4,10 @@ import { useSignUpUserMutation } from '../../contactsAPI/contactsApi';
 import React from 'react';
 
 const RegisterForm = () => {
-  const [signUpUser, { isError, isLoading, isSuccess }] =
-    useSignUpUserMutation();
+  const [
+    signUpUser,
+    // , { isError, isLoading, isSuccess }
+  ] = useSignUpUserMutation();
   const onFinish = values => {
     console.log('Success:', values);
     signUpUser(values);
