@@ -4,11 +4,11 @@ const loggedInSlice = createSlice({
   name: 'loggedIn',
   initialState,
   reducers: {
-    loggedIn(_, action) {
-      return action.payload;
+    loggedIn(state, action) {
+      return true;
     },
-    loggedOut(_, action) {
-      return action.payload;
+    loggedOut(state, action) {
+      return false;
     },
   },
 });

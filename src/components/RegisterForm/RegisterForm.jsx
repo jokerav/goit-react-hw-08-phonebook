@@ -78,7 +78,7 @@ const RegisterForm = () => {
         }}
       >
         <Button type="primary" htmlType="submit">
-          Submit
+          Sign Up
         </Button>
       </Form.Item>
     </Form>

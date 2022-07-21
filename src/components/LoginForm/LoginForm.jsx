@@ -1,9 +1,16 @@
 import { Button, Form, Input } from 'antd';
 import React from 'react';
+import { useLogInUserMutation } from 'contactsAPI/contactsApi';
+import { useDispatch } from 'react-redux';
+import { loggedIn } from '../../contactsAPI/loggedInSlice';
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
+  const [logIn] = useLogInUserMutation();
   const onFinish = values => {
     console.log('Success:', values);
+    logIn(values);
+    dispatch(loggedIn(true));
   };
 
   const onFinishFailed = errorInfo => {
