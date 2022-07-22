@@ -4,13 +4,14 @@ export const contactsApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://connections-api.herokuapp.com',
   }),
-  tagTypes: ['contacts'],
+  tagTypes: ['contacts', 'user'],
   endpoints: builder => ({
     signUpUser: builder.mutation({
       query: user => ({
         url: '/users/signup',
         method: 'POST',
         body: { name: user.name, email: user.email, password: user.password },
+        invalidatesTags: ['user'],
       }),
     }),
     logInUser: builder.mutation({

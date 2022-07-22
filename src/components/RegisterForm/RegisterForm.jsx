@@ -1,16 +1,16 @@
 import { Button, Form, Input } from 'antd';
 import { useSignUpUserMutation } from '../../contactsAPI/contactsApi';
-
+import { loggedIn } from 'contactsAPI/authSlice';
 import React from 'react';
+import { useDispatch } from 'react-redux';
 
 const RegisterForm = () => {
-  const [
-    signUpUser,
-    // , { isError, isLoading, isSuccess }
-  ] = useSignUpUserMutation();
-  const onFinish = values => {
-    console.log('Success:', values);
-    signUpUser(values);
+  const dispatch = useDispatch();
+  const [signUpUser, { isError, isLoading, isSuccess }] =
+    useSignUpUserMutation();
+  const onFinish = async values => {
+    const res = await signUpUser(values);
+    dispatch(loggedIn(res.data));
   };
 
   const onFinishFailed = errorInfo => {

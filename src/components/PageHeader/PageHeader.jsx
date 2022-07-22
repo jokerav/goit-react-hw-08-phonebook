@@ -9,7 +9,7 @@ const Header = () => {
   const navigateToSignUp = () => navigate('/register');
   const navigateToLogIn = () => navigate('/login');
   const isLoggedin = useSelector(getLoggedIn);
-  console.log(isLoggedin);
+  // console.log(isLoggedin);
   return (
     <div className="site-page-header-ghost-wrapper">
       <PageHeader
