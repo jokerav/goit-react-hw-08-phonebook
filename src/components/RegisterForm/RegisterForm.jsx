@@ -6,8 +6,10 @@ import { useDispatch } from 'react-redux';
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
-  const [signUpUser, { isError, isLoading, isSuccess }] =
-    useSignUpUserMutation();
+  const [
+    signUpUser,
+    // , { isError, isLoading, isSuccess }
+  ] = useSignUpUserMutation();
   const onFinish = async values => {
     const res = await signUpUser(values);
     dispatch(loggedIn(res.data));
