@@ -3,8 +3,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { getLoggedIn } from '../../contactsAPI/selectors';
-// import { loggedIn } from 'contactsAPI/authSlice';
-import DropdownMenu from '../DropdownMenu/DropdownMenu';
+import { useLogOutUserMutation } from '../../contactsAPI/contactsApi';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -14,6 +13,11 @@ const Header = () => {
   const logInClick = () => {
     navigateToLogIn();
   };
+  const [logOut] = useLogOutUserMutation();
+  const logOutClick = async () => {
+    const res = await logOut();
+    console.log(res);
+  };
   console.log(isLoggedin);
   return (
     <div className="site-page-header-ghost-wrapper">
@@ -22,7 +26,7 @@ const Header = () => {
         title="Title"
         subTitle="This is a subtitle"
         extra={[
-          <Button key="3">Operation</Button>,
+          // <Button key="3">Operation</Button>,
           !isLoggedin && (
             <Button key="2" onClick={() => navigateToSignUp()}>
               Sign Up
@@ -33,7 +37,12 @@ const Header = () => {
               Log In
             </Button>
           ),
-          isLoggedin && <DropdownMenu />,
+          isLoggedin && (
+            <Button key="3" type="primary" onClick={() => logOutClick()}>
+              Log Out
+            </Button>
+          ),
+          // isLoggedin && <DropdownMenu />,
         ]}
       ></PageHeader>
     </div>

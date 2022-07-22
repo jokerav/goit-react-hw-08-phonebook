@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+
 export const contactsApi = createApi({
   reducerPath: 'contactsAPI',
   baseQuery: fetchBaseQuery({
@@ -30,6 +31,16 @@ export const contactsApi = createApi({
         body: { email: user.email, password: user.password },
       }),
     }),
+    logOutUser: builder.mutation({
+      query: () => ({
+        method: 'POST',
+        url: '/users/logout',
+      }),
+    }),
   }),
 });
-export const { useSignUpUserMutation, useLogInUserMutation } = contactsApi;
+export const {
+  useSignUpUserMutation,
+  useLogInUserMutation,
+  useLogOutUserMutation,
+} = contactsApi;
