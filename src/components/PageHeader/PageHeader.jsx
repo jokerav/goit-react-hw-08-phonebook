@@ -1,11 +1,15 @@
 import { Button, PageHeader } from 'antd';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { getLoggedIn } from '../../contactsAPI/selectors';
 
 const Header = () => {
   const navigate = useNavigate();
   const navigateToSignUp = () => navigate('/register');
   const navigateToLogIn = () => navigate('/login');
+  const isLoggedin = useSelector(getLoggedIn);
+  console.log(isLoggedin);
   return (
     <div className="site-page-header-ghost-wrapper">
       <PageHeader
@@ -19,7 +23,7 @@ const Header = () => {
             Sign Up
           </Button>,
           <Button key="1" type="primary" onClick={() => navigateToLogIn()}>
-            Log In
+            {isLoggedin ? 'Log Out' : 'Log In'}
           </Button>,
         ]}
       ></PageHeader>

@@ -2,7 +2,7 @@ import { Button, Form, Input } from 'antd';
 import React from 'react';
 import { useLogInUserMutation } from 'contactsAPI/contactsApi';
 import { useDispatch } from 'react-redux';
-import { loggedIn } from '../../contactsAPI/loggedInSlice';
+import { loggedIn } from '../../contactsAPI/authSlice';
 
 const LoginForm = () => {
   const dispatch = useDispatch();
