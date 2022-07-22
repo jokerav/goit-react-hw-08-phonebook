@@ -5,12 +5,14 @@ import { useDispatch } from 'react-redux';
 import { loggedIn } from '../../contactsAPI/authSlice';
 
 const LoginForm = () => {
+  const [form] = Form.useForm();
   const dispatch = useDispatch();
   const [logIn] = useLogInUserMutation();
   const onFinish = async values => {
     const res = await logIn(values);
     console.log(res);
     dispatch(loggedIn(res.data));
+    form.resetFields();
   };
 
   const onFinishFailed = errorInfo => {
@@ -19,7 +21,8 @@ const LoginForm = () => {
 
   return (
     <Form
-      name="basic"
+      form={form}
+      name="loginForm"
       labelCol={{
         span: 8,
       }}
@@ -28,6 +31,8 @@ const LoginForm = () => {
       }}
       initialValues={{
         remember: true,
+        email: '',
+        password: '',
       }}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
