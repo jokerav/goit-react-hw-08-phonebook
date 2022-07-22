@@ -7,10 +7,10 @@ import { loggedIn } from '../../contactsAPI/authSlice';
 const LoginForm = () => {
   const dispatch = useDispatch();
   const [logIn] = useLogInUserMutation();
-  const onFinish = values => {
-    console.log('Success:', values);
-    logIn(values);
-    dispatch(loggedIn(true));
+  const onFinish = async values => {
+    const res = await logIn(values);
+    console.log(res);
+    dispatch(loggedIn(res.data));
   };
 
   const onFinishFailed = errorInfo => {

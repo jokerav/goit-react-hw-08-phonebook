@@ -13,8 +13,10 @@ const authSlice = createSlice({
       state.user = action.payload.user;
       state.token = action.payload.token;
     },
-    loggedOut(state, action) {
+    loggedOut(state, _) {
       state.isLoggedin = false;
+      state.user = null;
+      state.token = null;
     },
   },
 });
