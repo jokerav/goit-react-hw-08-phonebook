@@ -5,6 +5,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 
 const RegisterForm = () => {
+  const [form] = Form.useForm();
   const dispatch = useDispatch();
   const [
     signUpUser,
@@ -13,6 +14,7 @@ const RegisterForm = () => {
   const onFinish = async values => {
     const res = await signUpUser(values);
     dispatch(loggedIn(res.data));
+    form.resetFields();
   };
 
   const onFinishFailed = errorInfo => {
@@ -21,7 +23,8 @@ const RegisterForm = () => {
 
   return (
     <Form
-      name="basic"
+      form={form}
+      name="registerForm"
       labelCol={{
         span: 8,
       }}
