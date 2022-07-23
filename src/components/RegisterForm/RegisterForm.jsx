@@ -3,6 +3,7 @@ import { useSignUpUserMutation } from '../../contactsAPI/contactsApi';
 import { loggedIn } from 'contactsAPI/authSlice';
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterForm = () => {
   const [form] = Form.useForm();
@@ -11,9 +12,11 @@ const RegisterForm = () => {
     signUpUser,
     // , { isError, isLoading, isSuccess }
   ] = useSignUpUserMutation();
+  const navigate = useNavigate();
   const onFinish = async values => {
     const res = await signUpUser(values);
     dispatch(loggedIn(res.data));
+    navigate('/contacts');
     form.resetFields();
   };
 
