@@ -1,7 +1,8 @@
 import { Navigate } from 'react-router-dom';
 import { getLoggedIn } from '../contactsAPI/selectors';
 import { useSelector } from 'react-redux';
-const ProtectedRoute = ({ user, children }) => {
+import PropTypes from 'prop-types';
+const ProtectedRoute = ({ children }) => {
   const isLoggedin = useSelector(getLoggedIn);
   if (isLoggedin) {
     return <Navigate to="/contacts" replace />;
@@ -10,3 +11,6 @@ const ProtectedRoute = ({ user, children }) => {
   return children;
 };
 export default ProtectedRoute;
+ProtectedRoute.propTypes = {
+  children: PropTypes.node,
+};
