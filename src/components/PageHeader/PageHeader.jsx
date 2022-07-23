@@ -16,10 +16,9 @@ const Header = () => {
     <div className="site-page-header-ghost-wrapper">
       <PageHeader
         ghost={false}
-        title="Title"
-        subTitle="This is a subtitle"
+        title="Contacts Book"
+        subTitle="Made with love"
         extra={[
-          // <Button key="3">Operation</Button>,
           !isLoggedin && (
             <Button key="2" onClick={() => navigateToSignUp()}>
               Sign Up
