@@ -4,21 +4,23 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { getLoggedIn } from '../../contactsAPI/selectors';
 import { useLogOutUserMutation } from '../../contactsAPI/contactsApi';
+import { loggedOut } from '../../contactsAPI/authSlice';
+import { useDispatch } from 'react-redux';
 
 const Header = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const navigateToSignUp = () => navigate('/register');
   const navigateToLogIn = () => navigate('/login');
   const isLoggedin = useSelector(getLoggedIn);
-  const logInClick = () => {
-    navigateToLogIn();
-  };
+  const logInClick = () => navigateToLogIn();
   const [logOut] = useLogOutUserMutation();
   const logOutClick = async () => {
-    const res = await logOut();
-    console.log(res);
+    await logOut();
+    // console.log(res);
+    dispatch(loggedOut());
   };
-  console.log(isLoggedin);
+
   return (
     <div className="site-page-header-ghost-wrapper">
       <PageHeader
