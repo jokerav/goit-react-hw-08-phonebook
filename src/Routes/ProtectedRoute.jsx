@@ -1,6 +1,9 @@
 import { Navigate } from 'react-router-dom';
+import { getLoggedIn } from '../contactsAPI/selectors';
+import { useSelector } from 'react-redux';
 const ProtectedRoute = ({ user, children }) => {
-  if (user) {
+  const isLoggedin = useSelector(getLoggedIn);
+  if (isLoggedin) {
     return <Navigate to="/contacts" replace />;
   }
 

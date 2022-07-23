@@ -5,12 +5,8 @@ import ProtectedRoute from 'Routes/ProtectedRoute';
 import Header from './PageHeader/PageHeader';
 import LoginForm from './LoginForm/LoginForm';
 import Contacts from './Contacts/Contacts';
-import { useSelector } from 'react-redux';
-import { getLoggedIn } from '../contactsAPI/selectors';
 
 export const App = () => {
-  const isLoggedin = useSelector(getLoggedIn);
-
   return (
     <div>
       <Header />
@@ -19,7 +15,7 @@ export const App = () => {
           exact
           path="/register"
           element={
-            <ProtectedRoute user={isLoggedin}>
+            <ProtectedRoute>
               <RegisterForm />
             </ProtectedRoute>
           }
@@ -28,7 +24,7 @@ export const App = () => {
           exact
           path="/login"
           element={
-            <ProtectedRoute user={isLoggedin}>
+            <ProtectedRoute>
               <LoginForm />
             </ProtectedRoute>
           }
