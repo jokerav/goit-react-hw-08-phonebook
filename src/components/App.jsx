@@ -7,6 +7,7 @@ import LoginForm from './LoginForm/LoginForm';
 // import Contacts from './Contacts/Contacts';
 import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
+import Filter from './Filter/Filter';
 
 export const App = () => {
   return (
@@ -36,6 +37,7 @@ export const App = () => {
           element={
             <PrivateRoute>
               <ContactForm />
+              <Filter />
               <ContactList />
             </PrivateRoute>
           }
