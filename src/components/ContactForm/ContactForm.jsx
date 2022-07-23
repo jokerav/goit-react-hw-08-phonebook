@@ -1,14 +1,31 @@
 import { Button, Form, Input } from 'antd';
 import React from 'react';
-import { useAddContactMutation } from 'contactsAPI/contactsApi';
+import {
+  useGetContactsQuery,
+  useAddContactMutation,
+} from 'contactsAPI/contactsApi';
 
 const ContactForm = () => {
   const [form] = Form.useForm();
   const [addContact] = useAddContactMutation();
+  const { data: contacts = [] } = useGetContactsQuery();
+  const isNameInPhonebook = name => {
+    const nameInLowerCase = name.toLowerCase();
+    for (const contact of contacts) {
+      if (contact.name.toLowerCase() === nameInLowerCase) {
+        return true;
+      }
+    }
+    return false;
+  };
   const onFinish = async values => {
-    console.log('Success:', values);
-    const data = await addContact(values);
-    console.log(data);
+    // console.log('Success:', values);
+    if (!isNameInPhonebook(values.name)) {
+      await addContact(values);
+    } else {
+      alert(`${values.name} is already in contacts`);
+    }
+
     form.resetFields();
   };
 
