@@ -28,12 +28,14 @@ export const contactsApi = createApi({
         url: '/users/login',
         method: 'POST',
         body: { email: user.email, password: user.password },
+        invalidatesTags: ['user'],
       }),
     }),
     logOutUser: builder.mutation({
       query: () => ({
         method: 'POST',
         url: '/users/logout',
+        invalidatesTags: ['user'],
       }),
     }),
   }),

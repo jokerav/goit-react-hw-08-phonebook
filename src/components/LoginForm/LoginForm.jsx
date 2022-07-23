@@ -14,8 +14,8 @@ const LoginForm = () => {
   const onFinish = async values => {
     const res = await logIn(values);
     dispatch(loggedIn(res.data));
-    form.resetFields();
     navigate('/contacts');
+    form.resetFields();
   };
 
   const onFinishFailed = errorInfo => {

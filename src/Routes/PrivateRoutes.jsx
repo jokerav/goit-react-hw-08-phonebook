@@ -1,4 +1,4 @@
-import { Route, Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { getLoggedIn } from '../contactsAPI/selectors';
 import { useSelector } from 'react-redux';
 
