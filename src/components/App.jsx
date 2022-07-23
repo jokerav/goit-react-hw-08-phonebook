@@ -1,6 +1,6 @@
 import RegisterForm from './RegisterForm/RegisterForm';
 import { Routes, Route } from 'react-router-dom';
-// import PrivateRoute from 'Routes/PrivateRoutes';
+import PrivateRoute from 'Routes/PrivateRoutes';
 // import ProtectedRoute from 'Routes/ProtectedRoute';
 import Header from './PageHeader/PageHeader';
 import LoginForm from './LoginForm/LoginForm';
@@ -17,15 +17,15 @@ export const App = () => {
       <Routes>
         <Route exact path="/register" element={<RegisterForm />}></Route>
         <Route exact path="/login" element={<LoginForm />}></Route>
-        <Route path="/contacts" element={<Contacts />}></Route>
-        {/* <Route
+        {/* <Route path="/contacts" element={<Contacts />}></Route> */}
+        <Route
           path="/contacts"
           element={
             <PrivateRoute>
               <Contacts />
             </PrivateRoute>
           }
-        ></Route> */}
+        ></Route>
       </Routes>
     </div>
   );
