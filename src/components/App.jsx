@@ -4,7 +4,9 @@ import PrivateRoute from 'Routes/PrivateRoutes';
 import ProtectedRoute from 'Routes/ProtectedRoute';
 import Header from './PageHeader/PageHeader';
 import LoginForm from './LoginForm/LoginForm';
-import Contacts from './Contacts/Contacts';
+// import Contacts from './Contacts/Contacts';
+import ContactForm from './ContactForm/ContactForm';
+import ContactList from './ContactList/ContactList';
 
 export const App = () => {
   return (
@@ -33,7 +35,8 @@ export const App = () => {
           path="/contacts"
           element={
             <PrivateRoute>
-              <Contacts />
+              <ContactForm />
+              <ContactList />
             </PrivateRoute>
           }
         ></Route>

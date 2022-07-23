@@ -20,23 +20,38 @@ export const contactsApi = createApi({
         url: '/users/signup',
         method: 'POST',
         body: { name: user.name, email: user.email, password: user.password },
-        invalidatesTags: ['user'],
       }),
+      invalidatesTags: ['user'],
     }),
     logInUser: builder.mutation({
       query: user => ({
         url: '/users/login',
         method: 'POST',
         body: { email: user.email, password: user.password },
-        invalidatesTags: ['user'],
       }),
+      invalidatesTags: ['user'],
     }),
     logOutUser: builder.mutation({
       query: () => ({
         method: 'POST',
         url: '/users/logout',
-        invalidatesTags: ['user'],
       }),
+      invalidatesTags: ['user'],
+    }),
+    addContact: builder.mutation({
+      query: contact => ({
+        method: 'POST',
+        url: '/contacts',
+        body: { name: contact.name, number: contact.number },
+      }),
+      invalidatesTags: ['contacts'],
+    }),
+    getContacts: builder.query({
+      query: () => ({
+        url: '/contacts',
+        method: 'GET',
+      }),
+      providesTags: ['contacts'],
     }),
   }),
 });
@@ -44,4 +59,6 @@ export const {
   useSignUpUserMutation,
   useLogInUserMutation,
   useLogOutUserMutation,
+  useAddContactMutation,
+  useGetContactsQuery,
 } = contactsApi;
