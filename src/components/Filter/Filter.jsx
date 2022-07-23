@@ -10,7 +10,7 @@ export default function Filter() {
       Find contacts by name
       <input
         value={value}
-        onChange={e => dispatch(changeFilter(e.target.value))}
+        onChange={e => dispatch(changeFilter(e.target.value.trim()))}
         type="text"
         name="filter"
         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
