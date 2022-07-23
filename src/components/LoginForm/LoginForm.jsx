@@ -13,7 +13,6 @@ const LoginForm = () => {
   const navigate = useNavigate();
   const onFinish = async values => {
     const res = await logIn(values);
-    console.log(res);
     dispatch(loggedIn(res.data));
     form.resetFields();
     navigate('/contacts');
