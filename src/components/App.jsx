@@ -16,6 +16,15 @@ export const App = () => {
       <Routes>
         <Route
           exact
+          path="/"
+          element={
+            <ProtectedRoute>
+              <LoginForm />
+            </ProtectedRoute>
+          }
+        ></Route>
+        <Route
+          exact
           path="/register"
           element={
             <ProtectedRoute>
