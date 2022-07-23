@@ -1,4 +1,5 @@
 import { Button, Form, Input } from 'antd';
+import Spiner from '../Spiner/Spiner';
 import React from 'react';
 import { useLogInUserMutation } from 'contactsAPI/contactsApi';
 import { useDispatch } from 'react-redux';
@@ -7,7 +8,7 @@ import { loggedIn } from '../../contactsAPI/authSlice';
 const LoginForm = () => {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
-  const [logIn] = useLogInUserMutation();
+  const [logIn, { isLoading }] = useLogInUserMutation();
   const onFinish = async values => {
     const res = await logIn(values);
     console.log(res);
@@ -70,9 +71,13 @@ const LoginForm = () => {
           span: 16,
         }}
       >
-        <Button type="primary" htmlType="submit">
-          Log In
-        </Button>
+        {isLoading ? (
+          <Spiner />
+        ) : (
+          <Button type="primary" htmlType="submit">
+            Log In
+          </Button>
+        )}
       </Form.Item>
     </Form>
   );
