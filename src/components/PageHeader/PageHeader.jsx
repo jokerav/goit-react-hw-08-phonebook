@@ -17,7 +17,6 @@ const Header = () => {
   const [logOut] = useLogOutUserMutation();
   const logOutClick = async () => {
     await logOut();
-    // console.log(res);
     dispatch(loggedOut());
   };
 
