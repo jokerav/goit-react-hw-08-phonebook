@@ -1,6 +1,8 @@
 import { Button, Form, Input } from 'antd';
 import { useSignUpUserMutation } from '../../contactsAPI/contactsApi';
 import { loggedIn } from 'contactsAPI/authSlice';
+import Spiner from '../Spiner/Spiner';
+
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -8,10 +10,7 @@ import { useNavigate } from 'react-router-dom';
 const RegisterForm = () => {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
-  const [
-    signUpUser,
-    // , { isError, isLoading, isSuccess }
-  ] = useSignUpUserMutation();
+  const [signUpUser, { isLoading }] = useSignUpUserMutation();
   const navigate = useNavigate();
   const onFinish = async values => {
     const res = await signUpUser(values);
@@ -85,9 +84,16 @@ const RegisterForm = () => {
           span: 16,
         }}
       >
-        <Button type="primary" htmlType="submit">
+        {/* <Button type="primary" htmlType="submit">
           Sign Up
-        </Button>
+        </Button> */}
+        {isLoading ? (
+          <Spiner />
+        ) : (
+          <Button type="primary" htmlType="submit">
+            Sign up
+          </Button>
+        )}
       </Form.Item>
     </Form>
   );
