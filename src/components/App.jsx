@@ -8,6 +8,7 @@ import LoginForm from './LoginForm/LoginForm';
 import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
+import ErrorPage from './ErrorPage/ErrorPage';
 
 export const App = () => {
   return (
@@ -51,6 +52,7 @@ export const App = () => {
             </PrivateRoute>
           }
         ></Route>
+        <Route path="*" element={<ErrorPage />}></Route>
       </Routes>
     </div>
   );
